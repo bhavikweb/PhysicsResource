@@ -1,110 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Resource</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: #f0f0f0;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 15px;
-  }
-
-  .brick {
-    background-color: #3498db;
-    color: white;
-    text-align: center;
-    padding: 40px 0;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: transform 0.2s, background-color 0.2s;
-  }
-
-  .brick:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhysicsforHSC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafc;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1a237e;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #283593;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    nav button:hover, nav button.active {
+      background: #5c6bc0;
+    }
+    .tab-content {
+      display: none;
+      padding: 2rem;
+    }
+    .tab-content.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .brick {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
+    }
+    .brick:hover {
+      transform: scale(1.03);
+    }
+    .brick a {
+      text-decoration: none;
+      color: #1a237e;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-<h1>Physics Resource</h1>
-<div class="grid">
-  <a href="https://www.khanacademy.org/science/physics" class="brick" target="_blank">Khan Academy Physics</a>
-  <a href="https://physics.org" class="brick" target="_blank">Physics.org</a>
-  <a href="https://www.wikipedia.org" class="brick" target="_blank">Wikipedia</a>
-  <a href="https://www.youtube.com" class="brick" target="_blank">YouTube</a>
-  <a href="https://www.nasa.gov" class="brick" target="_blank">NASA</a>
-  <a href="https://www.sciencedaily.com/news/matter_energy/physics/" class="brick" target="_blank">Science Daily</a>
-  <a href="https://www.hyperphysics.info" class="brick" target="_blank">HyperPhysics</a>
-  <a href="https://www.edx.org/learn/physics" class="brick" target="_blank">edX Physics</a>
-  <a href="https://ocw.mit.edu/courses/physics/" class="brick" target="_blank">MIT OpenCourseWare</a>
-  <a href="https://www.physicsclassroom.com" class="brick" target="_blank">Physics Classroom</a>
+  <header>PhysicsforHSC</header>
 
-  <a href="https://www.nature.com/subjects/physics" class="brick" target="_blank">Nature Physics</a>
-  <a href="https://www.scientificamerican.com/physics/" class="brick" target="_blank">Scientific American</a>
-  <a href="https://www.physicsforums.com" class="brick" target="_blank">Physics Forums</a>
-  <a href="https://www.quora.com/topic/Physics" class="brick" target="_blank">Quora Physics</a>
-  <a href="https://www.researchgate.net/topic/Physics" class="brick" target="_blank">ResearchGate Physics</a>
-  <a href="https://www.iop.org" class="brick" target="_blank">IOP Physics</a>
-  <a href="https://www.aps.org" class="brick" target="_blank">American Physical Society</a>
-  <a href="https://www.annualreviews.org/journal/physchem" class="brick" target="_blank">Annual Reviews</a>
-  <a href="https://www.esa.int/Science_Exploration/Space_Science" class="brick" target="_blank">ESA Space Science</a>
-  <a href="https://www.space.com/physics" class="brick" target="_blank">Space.com Physics</a>
-  <a href="https://www.ted.com/topics/physics" class="brick" target="_blank">TED Physics Talks</a>
-  <a href="https://www.edureka.co/blog/physics-tutorials/" class="brick" target="_blank">Edureka Physics</a>
-  <a href="https://www.feynmanlectures.caltech.edu" class="brick" target="_blank">Feynman Lectures</a>
-  <a href="https://www.physicsworld.com" class="brick" target="_blank">Physics World</a>
-  <a href="https://www.chegg.com/physics" class="brick" target="_blank">Chegg Physics</a>
-  <a href="https://www.schoolphysics.co.uk" class="brick" target="_blank">School Physics</a>
-  <a href="https://www.britannica.com/science/physics" class="brick" target="_blank">Britannica Physics</a>
-  <a href="https://www.futurelearn.com/subjects/science-courses/physics" class="brick" target="_blank">FutureLearn Physics</a>
-  <a href="https://www.openstax.org/subjects/science" class="brick" target="_blank">OpenStax Physics</a>
-  <a href="https://www.coursera.org/browse/physical-science-and-engineering/physics" class="brick" target="_blank">Coursera Physics</a>
+  <nav>
+    <button class="active" onclick="openTab('gseb-theory')">GSEB Theory Exm.</button>
+    <button onclick="openTab('gseb-practical')">GSEB Pract. Exm.</button>
+    <button onclick="openTab('guj-cet')">Guj.CET</button>
+    <button onclick="openTab('neet')">NEET</button>
+    <button onclick="openTab('jee-main')">JEE Main</button>
+    <button onclick="openTab('jee-adv')">JEE Adv.</button>
+    <button onclick="openTab('cbse')">CBSE</button>
+    <button onclick="openTab('tools')">Tools</button>
+    <button onclick="openTab('physics-world')">Physics World</button>
+ 
+   
+  </nav>
 
-  <a href="page1.html" class="brick">Local Page 1</a>
-  <a href="page2.html" class="brick">Local Page 2</a>
-  <a href="page3.html" class="brick">Local Page 3</a>
-  <a href="page4.html" class="brick">Local Page 4</a>
-  <a href="page5.html" class="brick">Local Page 5</a>
-  <a href="page6.html" class="brick">Local Page 6</a>
-  <a href="page7.html" class="brick">Local Page 7</a>
-  <a href="page8.html" class="brick">Local Page 8</a>
-  <a href="page9.html" class="brick">Local Page 9</a>
-  <a href="page10.html" class="brick">Local Page 10</a>
+   <!-- GSEB Theory -->
+  <section id="gseb-theory" class="tab-content active">
+    <div class="brick"><a href="#">Syllabus 2025</a></div>
+    <div class="brick"><a href="#">Textbook PDF</a></div>
+    <div class="brick"><a href="#">Chapter Notes</a></div>
+    <div class="brick"><a href="#">Formulas Sheet</a></div>
+    <div class="brick"><a href="#">Sample Paper 1</a></div>
+    <div class="brick"><a href="#">Sample Paper 2</a></div>
+    <div class="brick"><a href="#">Previous Year Papers</a></div>
+    <div class="brick"><a href="#">Important Diagrams</a></div>
+    <div class="brick"><a href="#">Numerical Practice</a></div>
+    <div class="brick"><a href="#">Concept Videos</a></div>
+    <div class="brick"><a href="#">Board Paper Pattern</a></div>
+    <div class="brick"><a href="#">Exam Tips</a></div>
+    <div class="brick"><a href="#">Marking Scheme</a></div>
+    <div class="brick"><a href="#">Revision Notes</a></div>
+    <div class="brick"><a href="#">Online Test 1</a></div>
+    <div class="brick"><a href="#">Online Test 2</a></div>
+    <div class="brick"><a href="#">Doubt Solving</a></div>
+    <div class="brick"><a href="#">Animated Concepts</a></div>
+    <div class="brick"><a href="#">Chapterwise MCQs</a></div>
+    <div class="brick"><a href="#">All Resources ZIP</a></div>
+  </section>
+
+  <!-- GSEB Practical -->
+  <section id="gseb-practical" class="tab-content">
+    <div class="brick"><a href="#">Practical Manual</a></div>
+    <div class="brick"><a href="#">Viva Questions</a></div>
+    <div class="brick"><a href="#">Experiment List</a></div>
+    <div class="brick"><a href="#">Lab Setup Guide</a></div>
+    <div class="brick"><a href="#">Record Book Sample</a></div>
+    <div class="brick"><a href="#">Readings Practice</a></div>
+    <div class="brick"><a href="#">Graph Drawing</a></div>
+    <div class="brick"><a href="#">Error Calculation</a></div>
+    <div class="brick"><a href="#">Practical Videos</a></div>
+    <div class="brick"><a href="#">Demo Experiments</a></div>
+    <div class="brick"><a href="#">Online Simulation 1</a></div>
+    <div class="brick"><a href="#">Online Simulation 2</a></div>
+    <div class="brick"><a href="#">Observation Sheet</a></div>
+    <div class="brick"><a href="#">Lab Safety Rules</a></div>
+    <div class="brick"><a href="#">Exam Preparation</a></div>
+    <div class="brick"><a href="#">Checklist</a></div>
+    <div class="brick"><a href="#">FAQs</a></div>
+    <div class="brick"><a href="#">Notes PDF</a></div>
+    <div class="brick"><a href="#">Online Viva Practice</a></div>
+    <div class="brick"><a href="#">Full Practicals ZIP</a></div>
+  </section>
+
+  <!-- Guj CET -->
+  <section id="guj-cet" class="tab-content">
+    <div class="brick"><a href="#">Syllabus</a></div>
+    <div class="brick"><a href="#">Mock Test 1</a></div>
+    <div class="brick"><a href="#">Mock Test 2</a></div>
+    <div class="brick"><a href="#">Paper Analysis</a></div>
+    <div class="brick"><a href="#">Cutoff Trends</a></div>
+    <div class="brick"><a href="#">Important Topics</a></div>
+    <div class="brick"><a href="#">Practice Questions</a></div>
+    <div class="brick"><a href="#">Formula Sheet</a></div>
+    <div class="brick"><a href="#">Quick Revision Notes</a></div>
+    <div class="brick"><a href="#">Video Lectures</a></div>
+    <div class="brick"><a href="#">Concept Summary</a></div>
+    <div class="brick"><a href="#">Time Management Tips</a></div>
+    <div class="brick"><a href="#">Previous Year Papers</a></div>
+    <div class="brick"><a href="#">Online Quiz 1</a></div>
+    <div class="brick"><a href="#">Online Quiz 2</a></div>
+    <div class="brick"><a href="#">Scoring Strategy</a></div>
+    <div class="brick"><a href="#">Exam Pattern</a></div>
+    <div class="brick"><a href="#">Question Bank</a></div>
+    <div class="brick"><a href="#">Shortcut Tricks</a></div>
+    <div class="brick"><a href="#">All CET Resources</a></div>
+  </section>
+
+  <!-- NEET -->
+  <section id="neet" class="tab-content">
+    <div class="brick"><a href="#">Full Syllabus</a></div>
+    <div class="brick"><a href="#">Mock Tests</a></div>
+    <div class="brick"><a href="#">Important Physics Topics</a></div>
+    <div class="brick"><a href="#">Previous NEET Papers</a></div>
+    <div class="brick"><a href="#">Formula Book</a></div>
+    <div class="brick"><a href="#">High Weightage Topics</a></div>
+    <div class="brick"><a href="#">Video Tutorials</a></div>
+    <div class="brick"><a href="#">Chapter MCQs</a></div>
+    <div class="brick"><a href="#">Quick Revision Notes</a></div>
+    <div class="brick"><a href="#">Time Saving Tricks</a></div>
+    <div class="brick"><a href="#">Physics Question Bank</a></div>
+    <div class="brick"><a href="#">Online Quiz</a></div>
+    <div class="brick"><a href="#">Solved Examples</a></div>
+    <div class="brick"><a href="#">Rank Booster Tests</a></div>
+    <div class="brick"><a href="#">Practice PDFs</a></div>
+    <div class="brick"><a href="#">Exam Tips</a></div>
+    <div class="brick"><a href="#">Numerical Practice</a></div>
+    <div class="brick"><a href="#">NCERT Extract</a></div>
+    <div class="brick"><a href="#">Crash Course</a></div>
+    <div class="brick"><a href="#">Full NEET Resources</a></div>
+  </section>
+
+  <!-- JEE Main -->
+  <section id="jee-main" class="tab-content">
+    <div class="brick"><a href="#">Syllabus</a></div>
+    <div class="brick"><a href="#">Mock Papers</a></div>
+    <div class="brick"><a href="#">Important Formulas</a></div>
+    <div class="brick"><a href="#">Topic Wise Tests</a></div>
+    <div class="brick"><a href="#">Past Year Papers</a></div>
+    <div class="brick"><a href="#">Trick Sheet</a></div>
+    <div class="brick"><a href="#">Video Lessons</a></div>
+    <div class="brick"><a href="#">Quick Revision</a></div>
+    <div class="brick"><a href="#">Weightage Analysis</a></div>
+    <div class="brick"><a href="#">Numerical Practice</a></div>
+    <div class="brick"><a href="#">Doubt Solving</a></div>
+    <div class="brick"><a href="#">Exam Tips</a></div>
+    <div class="brick"><a href="#">Rank Predictor</a></div>
+    <div class="brick"><a href="#">Mock Test 1</a></div>
+    <div class="brick"><a href="#">Mock Test 2</a></div>
+    <div class="brick"><a href="#">Cheat Sheet</a></div>
+    <div class="brick"><a href="#">Practice PDFs</a></div>
+    <div class="brick"><a href="#">Online Calculator</a></div>
+    <div class="brick"><a href="#">Topic Notes</a></div>
+    <div class="brick"><a href="#">All JEE Main Links</a></div>
+  </section>
+
+  <!-- JEE Adv -->
+  <section id="jee-adv" class="tab-content">
+    <div class="brick"><a href="#">Advanced Syllabus</a></div>
+    <div class="brick"><a href="#">Tricky Problems</a></div>
+    <div class="brick"><a href="#">Concept Deep Dive</a></div>
+    <div class="brick"><a href="#">Mock Tests</a></div>
+    <div class="brick"><a href="#">IIT Physics Lectures</a></div>
+    <div class="brick"><a href="#">Formula Compendium</a></div>
+    <div class="brick"><a href="#">Problem Sets</a></div>
+    <div class="brick"><a href="#">Solution PDFs</a></div>
+    <div class="brick"><a href="#">Previous Papers</a></div>
+    <div class="brick"><a href="#">Numerical Practice</a></div>
+    <div class="brick"><a href="#">High Scorer Tips</a></div>
+    <div class="brick"><a href="#">Exam Pattern</a></div>
+    <div class="brick"><a href="#">Important Topics</a></div>
+    <div class="brick"><a href="#">Shortcuts</a></div>
+    <div class="brick"><a href="#">JEE Adv 2024 Paper</a></div>
+    <div class="brick"><a href="#">Concept Notes</a></div>
+    <div class="brick"><a href="#">Lecture Series</a></div>
+    <div class="brick"><a href="#">Practice Zone</a></div>
+    <div class="brick"><a href="#">Question Bank</a></div>
+    <div class="brick"><a href="#">All JEE Adv Links</a></div>
+  </section>
+
+  <!-- CBSE -->
+  <section id="cbse" class="tab-content">
+    <div class="brick"><a href="#">CBSE Syllabus</a></div>
+    <div class="brick"><a href="#">NCERT Solutions</a></div>
+    <div class="brick"><a href="#">CBSE Sample Papers</a></div>
+    <div class="brick"><a href="#">Previous Year Papers</a></div>
+    <div class="brick"><a href="#">Important Questions</a></div>
+    <div class="brick"><a href="#">Formula Notes</a></div>
+    <div class="brick"><a href="#">Practical File</a></div>
+    <div class="brick"><a href="#">Marking Scheme</a></div>
+    <div class="brick"><a href="#">Chapter Tests</a></div>
+    <div class="brick"><a href="#">Online Quizzes</a></div>
+    <div class="brick"><a href="#">Revision Worksheets</a></div>
+    <div class="brick"><a href="#">Physics Lab Manual</a></div>
+    <div class="brick"><a href="#">Mind Maps</a></div>
+    <div class="brick"><a href="#">Notes PDF</a></div>
+    <div class="brick"><a href="#">Video Lessons</a></div>
+    <div class="brick"><a href="#">Animations</a></div>
+    <div class="brick"><a href="#">Formula Sheet</a></div>
+    <div class="brick"><a href="#">Quick Revision</a></div>
+    <div class="brick"><a href="#">CBSE Circulars</a></div>
+    <div class="brick"><a href="#">All CBSE Resources</a></div>
+  </section>
+
+  <!-- Tools -->
+  <section id="tools" class="tab-content">
+    <div class="brick"><a href="#">Formula Calculator</a></div>
+    <div class="brick"><a href="#">Unit Converter</a></div>
+    <div class="brick"><a href="#">Graph Plotter</a></div>
+    <div class="brick"><a href="#">Equation Solver</a></div>
+    <div class="brick"><a href="#">Optics Simulator</a></div>
+    <div class="brick"><a href="#">Mechanics Tools</a></div>
+    <div class="brick"><a href="#">Projectile Calculator</a></div>
+    <div class="brick"><a href="#">Ohm's Law Calculator</a></div>
+    <div class="brick"><a href="#">Resistor Code Tool</a></div>
+    <div class="brick"><a href="#">RC Circuit Solver</a></div>
+    <div class="brick"><a href="#">Power Calculator</a></div>
+    <div class="brick"><a href="#">Acceleration Tool</a></div>
+    <div class="brick"><a href="#">Free Body Diagram</a></div>
+    <div class="brick"><a href="#">Kinematics Plotter</a></div>
+    <div class="brick"><a href="#">Work-Energy Tool</a></div>
+    <div class="brick"><a href="#">Capacitance Calculator</a></div>
+    <div class="brick"><a href="#">Magnetic Field Visualizer</a></div>
+    <div class="brick"><a href="#">Wavelength Finder</a></div>
+    <div class="brick"><a href="#">Scientific Calculator</a></div>
+    <div class="brick"><a href="#">All Tools</a></div>
+  </section>
+
+  
+  <!-- Physics World -->
+  <section id="physics-world" class="tab-content">
+    <div class="brick"><a href="https://physicsworld.com" target="_blank">Physics World</a></div>
+    <div class="brick"><a href="https://hyperphysics.phy-astr.gsu.edu/" target="_blank">HyperPhysics</a></div>
+    <div class="brick"><a href="https://www.khanacademy.org/science/physics" target="_blank">Khan Academy Physics</a></div>
+    <div class="brick"><a href="https://www.physicsclassroom.com/" target="_blank">The Physics Classroom</a></div>
+    <div class="brick"><a href="https://www.sciencedaily.com/news/matter_energy/physics/" target="_blank">Science Daily - Physics</a></div>
+    <div class="brick"><a href="#">Physics Stack Exchange</a></div>
+    <div class="brick"><a href="#">NASA Physics Resources</a></div>
+    <div class="brick"><a href="#">MIT OpenCourseWare</a></div>
+    <div class="brick"><a href="#">Coursera Physics</a></div>
+    <div class="brick"><a href="#">edX Physics</a></div>
+    <div class="brick"><a href="#">YouTube Physics Channels</a></div>
+    <div class="brick"><a href="#">NPTEL Physics</a></div>
+    <div class="brick"><a href="#">Physics Simulations</a></div>
+    <div class="brick"><a href="#">University Resources</a></div>
+    <div class="brick"><a href="#">Physics Podcasts</a></div>
+    <div class="brick"><a href="#">Research Papers</a></div>
+    <div class="brick"><a href="#">Open Physics Journals</a></div>
+    <div class="brick"><a href="#">Scientific American - Physics</a></div>
+    <div class="brick"><a href="#">BBC Science Physics</a></div>
+    <div class="brick"><a href="#">All Physics World Links</a></div>
+  </section>
 
 
-  <a href="page11.html" class="brick">Local Page 11</a>
-  <a href="page12.html" class="brick">Local Page 12</a>
-  <a href="page13.html" class="brick">Local Page 13</a>
-  <a href="page14.html" class="brick">Local Page 14</a>
-  <a href="page15.html" class="brick">Local Page 15</a>
-  <a href="page16.html" class="brick">Local Page 16</a>
-  <a href="page17.html" class="brick">Local Page 17</a>
-  <a href="page18.html" class="brick">Local Page 18</a>
-  <a href="page19.html" class="brick">Local Page 19</a>
-  <a href="page20.html" class="brick">Local Page 20</a>
 
-  <a href="page21.html" class="brick">Local Page 21</a>
-  <a href="page22.html" class="brick">Local Page 22</a>
-  <a href="page23.html" class="brick">Local Page 23</a>
-  <a href="page24.html" class="brick">Local Page 24</a>
-  <a href="page25.html" class="brick">Local Page 25</a>
-  <a href="page26.html" class="brick">Local Page 26</a>
-  <a href="page27.html" class="brick">Local Page 27</a>
-  <a href="page28.html" class="brick">Local Page 28</a>
-  <a href="page29.html" class="brick">Local Page 29</a>
-  <a href="page30.html" class="brick">Local Page 30</a>
-</div>
+  <script>
+    function openTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
